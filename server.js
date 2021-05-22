@@ -23,16 +23,13 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully.");
 });
 
-const bookRouter = require("./routes/book");
-//const voteRouter = require('');
+const voteRouter = require('./voteRouter');
 
-//app.use('/api/v1/votes', voteRouter);
+app.use('/api/v1/vote', voteRouter);
 app.use("/api/v1/test", (req, res) => {
   res.json({ message: "test successfull" });
 });
 
-if (process.env.NODE_ENV === "production") {
-}
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
