@@ -26,10 +26,6 @@ connection.once("open", () => {
 const voteRouter = require('./voteRouter');
 
 app.use('/api/v1/vote', voteRouter);
-app.use("/api/v1/test", (req, res) => {
-  res.json({ message: "test successfull" });
-});
-
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
