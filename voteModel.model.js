@@ -9,7 +9,7 @@ const voteSchema = new Schema({
   },
   email: {
     type: String,
-    unique: false, //DEV
+    unique: true,
     required: true,
   },
 });
