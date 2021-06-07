@@ -8,7 +8,10 @@ require("dotenv").config();
 
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+const corsOptions = {
+  origin: "https://vote2021kadi.netlify.app",
+};
+/* app.use(cors()); */
 app.use(express.json());
 
 const uri = process.env.MONGO_URI;
@@ -26,15 +29,7 @@ connection.once("open", () => {
 
 const voteRouter = require("./voteRouter");
 
-app.use("/api/v1/vote", voteRouter);
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
+app.use("/api/v1/vote", cors(corsOptions), voteRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
